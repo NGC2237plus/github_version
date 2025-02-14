@@ -30,7 +30,6 @@ jobs:
 
       - name: 环境
         run: |
-          echo ${{VERSION}}
           echo ${{ github.workspace }}
           echo ${{ github.ref_name }}
 
