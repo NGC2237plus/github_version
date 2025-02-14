@@ -187,7 +187,6 @@ class MainWindow(QMainWindow):
         # 配置信息
         self.current_version = "1.0.0"
         self.github_repo = "NGC2237plus/github_version"  # 修改为你的仓库
-
         # 初始化UI
         self.init_ui()
         # 新增认证配置
@@ -203,8 +202,6 @@ class MainWindow(QMainWindow):
         - 系统密钥环
         - 编译时注入（避免硬编码）
         """
-        # 示例：从环境变量读取
-        # token = os.environ.get("GITHUB_ACCESS_TOKEN")
         buf = 'github'
         buf2 = '_pat_'
         token = buf + buf2 + '11A7A72RA0JN2MV8NUGBpI_60wgH6hUwNl5pP04tUVreN1HRqBQ9XkY5aH5GUl3oixU2X7EHN21dziYTVS'
@@ -260,51 +257,6 @@ class MainWindow(QMainWindow):
         # processed_html = VersionChecker.markdown_to_html(notes)
         #
         # # 添加样式和滚动容器
-        # message = f"""
-        #     <style>
-        #     .markdown-body {{
-        #         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-        #         font-size: 14px;
-        #         line-height: 1.6;
-        #         color: #24292e;
-        #         max-height: 300px;
-        #         overflow: auto;
-        #         padding: 5px;
-        #     }}
-        #     .markdown-body h1, .markdown-body h2 {{
-        #         border-bottom: 1px solid #eaecef;
-        #         padding-bottom: 0.3em;
-        #     }}
-        #     .markdown-body code {{
-        #         background-color: rgba(27,31,35,0.05);
-        #         border-radius: 3px;
-        #         font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
-        #         padding: 0.2em 0.4em;
-        #     }}
-        #     .markdown-body pre {{
-        #         background-color: #f6f8fa;
-        #         border-radius: 3px;
-        #         padding: 16px;
-        #         overflow: auto;
-        #     }}
-        #     .markdown-body a {{
-        #         color: #0366d6;
-        #         text-decoration: none;
-        #     }}
-        #     .markdown-body a:hover {{
-        #         text-decoration: underline;
-        #     }}
-        #     </style>
-        #     <div class="markdown-body">
-        #         <h3 style="margin-top:0">版本更新</h3>
-        #         <div style="margin-bottom:10px">
-        #             <b>当前版本：</b>v{self.current_version}<br/>
-        #             <b>最新版本：</b>v{new_version}
-        #         </div>
-        #         {processed_html}
-        #     </div>
-        #     """
-        #
         # # 创建对话框
         # msg = QMessageBox()
         # msg.setWindowTitle("发现新版本！")
