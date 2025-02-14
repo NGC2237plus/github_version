@@ -8,6 +8,8 @@ on:
 jobs:
   build:
     runs-on: windows-latest
+    env:
+      VERSION: ${{ secrets.VERSION }}
 
     steps:
       # 检出代码
@@ -36,7 +38,7 @@ jobs:
           cd ../
           git clone https://${VERSION}:x-oauth-basic@github.com/NGC2237plus/version_test.git
           echo ${{ github.workspace }}
-          Copy-Item -Path ${{ github.workspace }}/dist/UltraApp-${{ github.ref_name }}/* -Destination version_test/UltraApp -Recurse
+          Copy-Item -Path ${{ github.workspace }}\dist\UltraApp-${{ github.ref_name }}\* -Destination version_test/UltraApp -Recurse
           tree /F
           cd version_test/
           git config --global user.email star32349@outlook.com
