@@ -26,6 +26,7 @@ class VersionChecker(QThread):
         request.setHeader(QNetworkRequest.UserAgentHeader, "UpdateChecker/1.0")
 
         reply = self.manager.get(request)
+        # print(reply.readAll().data().decode())
         reply.finished.connect(
             lambda: self.handle_response(reply)
         )

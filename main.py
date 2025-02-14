@@ -15,9 +15,9 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        # 配置信息
+        # 配置信息v
         self.current_version = "1.0.0"  # 确保与GitHub tag一致
-        self.github_repo = "your_github_name/your_repo_name"
+        self.github_repo = "NGC2237plus/github_version"
 
         # 初始化UI
         self.init_ui()

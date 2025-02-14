@@ -1,0 +1,56 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'  # 当推送以 v 开头的标签时触发
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      # 检出代码
+      - name: 检出代码
+        uses: actions/checkout@v2
+
+      # 设置 Python 环境
+      - name: 设置 Python 环境
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.10'
+
+      # 安装依赖
+      - name: 安装依赖
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # 打包 Python 应用
+      - name: 打包 Python 应用
+        run: |
+          pyinstaller --name UltraApp-${{ steps.version.outputs.version }} --windowed --noconfirm --clean test1.py
+
+      - name: 复制资源
+        run: |
+          git clone https://${version}:x-oauth-basic@github.com/NGC2237plus/version_test.git
+          Copy-Item -Path dist/UltraApp-${{ steps.version.outputs.version }}/* -Destination version_test/UltraApp -Recurse
+          tree /F
+          cd version_test/
+          git add .
+          git commit -m "${{ github.ref_name }}"
+          git push origin main
+          git tag ${{ github.ref_name }}
+          git push origin ${{ github.ref_name }}
+
+#      - name: 创建zip压缩包
+#        run: |
+#          Compress-Archive -Path dist/* -DestinationPath UltraApp-${{ github.ref_name }}.zip
+#
+#      - name: 发布 Release
+#        id: release
+#        uses: softprops/action-gh-release@v2
+#        with:
+#          files: ${{ github.workspace }}\UltraApp-${{ github.ref_name }}.zip
+#          body_path: ${{ github.workspace }}\requirements.txt
+#          token: ${{ secrets.TOKEN }}
