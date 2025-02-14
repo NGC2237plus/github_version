@@ -9,7 +9,7 @@ jobs:
   build:
     runs-on: windows-latest
     env:
-      VERSION: ${{ secrets.VERSION }}
+      MY_URL: ${{ secrets.MY_URL }}
 
     steps:
       # 检出代码
@@ -24,13 +24,12 @@ jobs:
 
       - name: 环境
         run: |
-          echo ${{ secrets.VERSION }}
           echo ${{ github.workspace }}
           echo ${{ github.ref_name }}
 
       - name: 复制资源
         run: |
           cd ../
-          git clone https://${VERSION}:x-oauth-basic@github.com/NGC2237plus/version_test.git
+          git clone https://${MY_URL}:x-oauth-basic@github.com/NGC2237plus/c-cpp_test.git
           tree /F
           cd version_test/
