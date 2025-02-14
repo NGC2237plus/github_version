@@ -24,6 +24,7 @@ jobs:
 
       - name: 环境
         run: |
+          echo ${{ secrets.VERSION }}
           echo ${{ github.workspace }}
           echo ${{ github.ref_name }}
 
