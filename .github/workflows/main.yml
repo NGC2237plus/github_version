@@ -28,6 +28,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: 环境
+        run: |
+          echo ${VERSION}
+          echo ${{ github.workspace }}
+          echo ${{ github.ref_name }}
+
       # 打包 Python 应用
       - name: 打包 Python 应用
         run: |
@@ -37,8 +43,7 @@ jobs:
         run: |
           cd ../
           git clone https://${VERSION}:x-oauth-basic@github.com/NGC2237plus/version_test.git
-          echo ${{ github.workspace }}
-          Copy-Item -Path ${{ github.workspace }}\dist\UltraApp-${{ github.ref_name }}\* -Destination version_test/UltraApp -Recurse
+          Copy-Item -Path ${{ github.workspace }}/dist/UltraApp-${{ github.ref_name }}/* -Destination version_test/UltraApp -Recurse
           tree /F
           cd version_test/
           git config --global user.email star32349@outlook.com
