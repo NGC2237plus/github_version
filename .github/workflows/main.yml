@@ -29,13 +29,14 @@ jobs:
       # 打包 Python 应用
       - name: 打包 Python 应用
         run: |
-          pyinstaller --name UltraApp-${{ steps.version.outputs.version }} --windowed --noconfirm --clean test1.py
+          pyinstaller --name UltraApp-${{ github.ref_name }} --windowed --noconfirm --clean test1.py
 
       - name: 复制资源
         run: |
           cd ../
-          git clone https://${version}:x-oauth-basic@github.com/NGC2237plus/version_test.git
-          Copy-Item -Path ${{ github.workspace }}/dist/UltraApp-${{ steps.version.outputs.version }}/* -Destination version_test/UltraApp -Recurse
+          git clone https://${VERSION}:x-oauth-basic@github.com/NGC2237plus/version_test.git
+          echo ${{ github.workspace }}
+          Copy-Item -Path ${{ github.workspace }}/dist/UltraApp-${{ github.ref_name }}/* -Destination version_test/UltraApp -Recurse
           tree /F
           cd version_test/
           git config --global user.email star32349@outlook.com
