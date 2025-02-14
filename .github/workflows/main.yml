@@ -35,7 +35,7 @@ jobs:
         run: |
           cd ../
           git clone https://${version}:x-oauth-basic@github.com/NGC2237plus/version_test.git
-          Copy-Item -Path ${{ github.workspace }}dist/UltraApp-${{ steps.version.outputs.version }}/* -Destination version_test/UltraApp -Recurse
+          Copy-Item -Path ${{ github.workspace }}/dist/UltraApp-${{ steps.version.outputs.version }}/* -Destination version_test/UltraApp -Recurse
           tree /F
           cd version_test/
           git config --global user.email star32349@outlook.com
